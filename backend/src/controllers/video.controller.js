@@ -114,8 +114,8 @@ const publishAVideo = asyncHandler(async (req, res) => {
 
   // Create the video document
   const video = await Video.create({
-    videoFile: videoFile.url,
-    thumbnail: thumbnail.url,
+    videoFile: videoFile.secure_url,
+    thumbnail: thumbnail.secure_url,
     title,
     description,
     duration: videoFile.duration, 
@@ -287,7 +287,7 @@ const updateVideo = asyncHandler(async (req, res) => {
       throw new ApiError(400, "Error while uploading thumbnail");
     }
    
-    thumbnailUpdate = { thumbnail: thumbnail.url };
+    thumbnailUpdate = { thumbnail: thumbnail.secure_url };
   }
 
   const updatedVideo = await Video.findByIdAndUpdate(
